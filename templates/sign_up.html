@@ -1,0 +1,25 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="{% static 'blog_app/styles.css' %}">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign-up</title>
+</head>
+<body>
+    {% if form.errors %}
+        <div style="color: red; border: 1px solid red; padding: 10px; margin-bottom: 15px;">
+            <p><b>Please correct the errors below:</b></p>
+            {{ form.errors }}
+        </div>
+    {% endif %}
+    <div class="form-container">
+        <form method="post" action="{% url 'sign_up' %}">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Sign Up</button>
+        </form>
+    </div>
+</body>
+</html>
