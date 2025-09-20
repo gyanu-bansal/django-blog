@@ -38,15 +38,5 @@ def create_comment(request,post_id):
 			comment.post=Post.objects.get(id=post_id)
 			comment.save()
 			return redirect('post_detail',post_id)
-	
-def register(request):
-	if request.method=='POST':
-		h=UserCreationForm(request.POST)
-		if h.is_valid():
-			h.save()
-			return redirect('login')
-		
-	else:
-		h=UserCreationForm()
-	return render(request,'sign_up.html',{'form':h})
+
 		

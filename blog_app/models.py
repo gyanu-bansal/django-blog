@@ -9,6 +9,6 @@ class Post(models.Model):
 
 class Comment(models.Model):
 	commentor=models.ForeignKey(User, on_delete=models.CASCADE)
-	comment=models.TextField()
+	comment=models.CharField(500)
 	created_at=models.DateTimeField(auto_now_add=True)
 	post=models.ForeignKey(Post, on_delete=models.PROTECT)# AS WE DON'T WANT TO DELETE THE POST ON DELTEITON OF COMMENT

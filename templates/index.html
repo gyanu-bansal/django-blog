@@ -11,16 +11,23 @@
 <body>
     <div class="user-links">
         {% if request.user.is_authenticated %}
+        <!-- if user is authenticated show thier account data-->
             <p>Hello, {{ request.user.username }}!</p>
-            <form action="{% url 'logout' %}" method="post">
-                {% csrf_token %}
-                <button type="submit">Log Out</button>
-            </form>
+            {% if request.user.email %}
+            <p>your email:  {{ request.user.email }}!</p>
+            {% endif %}
+            {% if request.user.last_login %}
+            <p>your last login:  {{ request.user.last_login }}!</p>
+            {% endif %}
             <a href="{% url 'create_post' %}">Create a New Post</a>
         {% else %}
-            <a href="{% url 'login' %}">Log In</a>
-            <br>
-            <a href="{% url 'sign_up' %}">sign up</a>
+        <!-- if user is not authenticated show for login -->
+        <a href="{% url 'account_login' %}">Create a New Post</a>
+        <br>
+        <a href="{% url 'account_login' %}">login</a>
+        <br>
+        <a href="{% url 'account_signup' %}">Sign up</a>
+            
         {% endif %}
     </div>
 
@@ -34,3 +41,4 @@
     </ul>
 </body>
 </html>
+
