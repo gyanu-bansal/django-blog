@@ -22,5 +22,16 @@
         <p><b>Commentor:</b> {{ comment.commentor }}</p>
     </div>
     {% endfor %}
+    {%if form.errors %}
+    <div class='comment-errors'>
+        <p>please correct these errors: </p>
+        {{form.errors}}
+    </div>
+    {% endif %}
+    <form method="post" action="{% url 'create_comment' post.id %}">
+        {% csrf_token %}
+        {{form}}
+        <button type="submit">send</button>
+    </form>
 </body>
 </html>

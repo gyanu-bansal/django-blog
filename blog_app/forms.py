@@ -1,6 +1,6 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
-from .models import Post
+from .models import Post,Comment
 
 class PostForm((forms.ModelForm)):
     class Meta:
@@ -8,3 +8,8 @@ class PostForm((forms.ModelForm)):
         model = Post
         # We specify which fields from the Post model we want to show on the form
         fields = ['title', 'content']
+
+class CommentForm(forms.ModelForm):
+    class Meta:
+        model=Comment
+        fields=['comment']

@@ -8,7 +8,7 @@ class Post(models.Model):
 	created_at=models.DateTimeField(auto_now_add=True)
 
 class Comment(models.Model):
-	commentor=models.CharField(max_length=150)
+	commentor=models.ForeignKey(User, on_delete=models.CASCADE)
 	comment=models.TextField()
 	created_at=models.DateTimeField(auto_now_add=True)
 	post=models.ForeignKey(Post, on_delete=models.PROTECT)# AS WE DON'T WANT TO DELETE THE POST ON DELTEITON OF COMMENT
