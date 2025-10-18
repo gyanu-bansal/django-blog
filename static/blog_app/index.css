@@ -1,0 +1,127 @@
+/* ================================================= */
+/* 0. PALETTE (Ensure these variables are defined at the top of your styles.css) */
+/* ================================================= */
+:root {
+    --main-text-color: #3F474A;     /* Dark muted blue-gray */
+    --accent-color: #8C5F4A;        /* Warm, earthy brown */
+    --background-light: #F7F3E9;   /* Creamy off-white (for body background) */
+    --content-bg: #E8E5D3;         /* Slightly darker cream (for content box) */
+    --border-color: #D3D8D7;        /* Light, subtle gray-blue */
+    --link-color: #557A8B;          /* Muted blue */
+    --hover-color: #CC9966;         /* Soft gold/tan */
+    --success-color: #7BBF8E;       /* Soft green for success */
+    --footer-text: #88998C;         /* Desaturated green-gray */
+}
+
+/* ================================================= */
+/* 1. NAVIGATION BAR (Used inside {% block navigate %}) */
+/* NOTE: The .main-nav styling should be in the parent CSS */
+/* ================================================= */
+
+.site-title {
+    font-size: 1.5em;
+    color: var(--background-light);
+}
+
+.nav-links {
+    display: flex;
+    align-items: center;
+}
+
+.nav-links a {
+    color: var(--background-light);
+    margin-left: 20px;
+    text-decoration: none;
+    font-weight: normal;
+    transition: color 0.2s;
+}
+
+.nav-links a:hover {
+    color: var(--hover-color);
+}
+
+.btn-create {
+    background-color: var(--hover-color); /* Soft gold button */
+    color: var(--main-text-color);
+    padding: 8px 15px;
+    border-radius: 6px;
+    font-weight: bold;
+    margin-left: 30px;
+    border: 1px solid var(--hover-color);
+    transition: all 0.2s;
+}
+
+.btn-create:hover {
+    background-color: var(--content-bg);
+    color: var(--accent-color);
+}
+
+/* ================================================= */
+/* 2. USER INFO / MESSAGE BOX (.welcome-box) */
+/* ================================================= */
+.user-info-messages {
+    margin-bottom: 30px;
+}
+
+.welcome-box {
+    background-color: var(--content-bg);
+    border: 1px solid var(--border-color);
+    /* Make the border slightly rounded, like the content box */
+    border-radius: 8px; 
+    padding: 15px 20px;
+    font-size: 0.95em;
+    margin-bottom: 20px;
+    /* Use a very subtle inner shadow for depth */
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.05); 
+}
+
+.welcome-box p {
+    margin: 5px 0;
+}
+
+.welcome-box span {
+    font-weight: bold;
+    color: var(--link-color); /* Highlight for last login time */
+}
+
+/* ================================================= */
+/* 3. BLOG POST LIST (.post-list) */
+/* ================================================= */
+h1 {
+    color: var(--main-text-color);
+    font-size: 2em;
+    margin-top: 0;
+    /* A clean, subtle divider below the main title */
+    border-bottom: 2px solid var(--border-color);
+    padding-bottom: 10px;
+    margin-bottom: 30px;
+}
+
+.post-list {
+    list-style: none; /* Remove default bullets */
+    padding: 0;
+    margin: 0;
+}
+
+.post-list li {
+    margin-bottom: 12px;
+}
+
+.post-list li a {
+    display: block;
+    padding: 10px 15px;
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    color: var(--main-text-color);
+    background-color: white; /* White background for each list item */
+    transition: background-color 0.2s, border-color 0.2s;
+    font-size: 1.1em;
+    font-weight: 500;
+}
+
+.post-list li a:hover {
+    /* Subtle hover effect for the list items */
+    background-color: #fff9e6; /* Very subtle creamy highlight on hover */
+    border-color: var(--link-color);
+    text-decoration: none;
+}

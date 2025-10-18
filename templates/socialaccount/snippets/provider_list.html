@@ -1,0 +1,24 @@
+{% load static %}
+<!-- default css file name=style.css-->
+{% load allauth socialaccount %}
+{% get_providers as socialaccount_providers %}
+{% if socialaccount_providers %}
+    {% element provider_list %}
+        {% for provider in socialaccount_providers %}
+            {% if provider.id == "openid" %}
+                {% for brand in provider.get_brands %}
+                    {% provider_login_url provider openid=brand.openid_url process=process as href %}
+                    {% element provider name=brand.name provider_id=provider.id href=href %}
+                    {% endelement %}
+                {% endfor %}
+            {% endif %}
+            {% provider_login_url provider process=process scope=scope auth_params=auth_params as href %}
+            <div class="social-login-actions">
+                <a href="{{href}}"> 
+                    <img src="{% static 'images/'|add:provider.id|add:'-login.png' %}" alt='Login with {{provider.name}}' style="height: 3em;">
+                </a>
+                <input class="btn btn-warning" type="button" onclick="location.href='index'; return false;" value="Cancel" style="height: 2.5em;">
+            </div>
+        {% endfor %}
+    {% endelement %}
+{% endif %}

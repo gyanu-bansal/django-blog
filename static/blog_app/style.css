@@ -1,0 +1,201 @@
+/* ==================================== */
+/* 🎨 1. GLOBAL STYLES & LAYOUT (Inspired by the image) */
+/* ==================================== */
+
+:root {
+    /* Colors extracted and adapted from the provided image */
+    --main-text-color: #3F474A;     /* Dark muted blue-gray (like the guy's shirt/hair) */
+    --accent-color: #8C5F4A;        /* Warm, earthy brown (like the girl's top, bike seat) */
+    --background-light: #F7F3E9;   /* Very light, creamy off-white (like the sky/beach sand) */
+    --content-bg: #FFFFFF;         /* Pure white for readability on content blocks */
+    --border-color: #D3D8D7;        /* Light, subtle gray-blue for borders/dividers */
+    --link-color: #557A8B;          /* Muted blue (from the water/sky) */
+    --hover-color: #CC9966;         /* Soft, slightly brighter tan/gold (subtle highlight) */
+    --footer-text: #88998C;         /* Desaturated green-gray (like the moss/foliage) */
+    --font-family: 'Inter', sans-serif; /* Modern sans-serif, or 'Segoe UI', 'Helvetica Neue' */
+}
+
+/* Fallback for system fonts if Inter isn't loaded */
+body {
+    font-family: var(--font-family), Arial, sans-serif;
+    background-color: var(--background-light);
+    color: var(--main-text-color);
+    margin: 0;
+    line-height: 1.7; /* Slightly more line height for comfort */
+    -webkit-font-smoothing: antialiased; /* Better font rendering */
+    -moz-osx-font-smoothing: grayscale; /* Better font rendering */
+}
+
+h1, h2, h3, h4, h5, h6 {
+    color: var(--accent-color); /* Headings use the warm accent brown */
+    margin-top: 1.2em;
+    margin-bottom: 0.8em;
+    line-height: 1.3;
+}
+
+a {
+    color: var(--link-color);
+    text-decoration: none;
+    transition: color 0.2s ease-in-out;
+}
+
+a:hover {
+    color: var(--hover-color);
+    text-decoration: underline;
+}
+
+.main-wrapper {
+    max-width: 960px; /* Slightly narrower for a more focused, cozy feel */
+    margin: 30px auto; /* More margin top/bottom */
+    padding: 20px;
+}
+
+#content-block {
+    padding: 40px; /* More generous padding */
+    background: var(--content-bg);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08); /* A bit more prominent, soft shadow */
+    border-radius: 10px; /* Gently rounded corners */
+    min-height: 65vh; /* Adjust as needed */
+    box-sizing: border-box; /* Include padding in element's total width and height */
+}
+
+/* ==================================== */
+/* 2. NAVIGATION MENU STYLES */
+/* ==================================== */
+
+.nav-container {
+    background-color: var(--accent-color); /* The warm brown from the image */
+    padding: 15px 25px; /* Adjust padding */
+    margin-bottom: 50px; /* More space below nav */
+    color: var(--background-light); /* Creamy text for contrast */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2); /* Subtle separation */
+}
+
+.nav-container strong {
+    display: none; 
+}
+
+.nav-container ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: left; /* Center nav links */
+    gap: 35px; /* More space between links */
+}
+
+.nav-container li {
+    display: inline;
+}
+
+.nav-container a {
+    text-decoration: none;
+    color: var(--background-light); /* Creamy white link color */
+    font-weight: 600; /* Slightly less bold than before to feel softer */
+    font-size: 1.05em;
+    letter-spacing: 0.8px; /* A bit more spacing */
+    padding: 8px 0;
+    position: relative; /* For underline effect */
+}
+
+.nav-container a:hover {
+    color: var(--content-bg); /* Pure white on hover */
+}
+
+/* Subtle underline on hover, like a gentle wave */
+.nav-container a::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: 0;
+    left: 50%;
+    background-color: var(--background-light);
+    transition: width 0.3s ease-out, left 0.3s ease-out;
+}
+
+.nav-container a:hover::after {
+    width: 100%;
+    left: 0;
+}
+
+
+/* ==================================== */
+/* 3. MESSAGES STYLES */
+/* ==================================== */
+
+.messages-container {
+    padding: 20px;
+    margin-bottom: 30px;
+    border-radius: 8px;
+    border-left: 8px solid; /* Thicker border for presence */
+    background-color: var(--content-bg);
+    list-style: none;
+    color: var(--main-text-color);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    font-size: 0.95em;
+}
+
+.messages-container strong {
+    font-weight: bold;
+    display: block;
+    margin-bottom: 8px;
+    color: var(--accent-color); /* Use accent color for message headings */
+}
+
+.messages-container ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.messages-container li {
+    padding: 5px 0;
+}
+
+/* Message Tags - Ghibli-inspired tones */
+.messages-container li.success { 
+    border-left-color: #7BBF8E; /* Soft, gentle green */
+}
+.messages-container li.error {
+    border-left-color: #D69480; /* Muted, warm coral/red */
+}
+.messages-container li.info, 
+.messages-container li.warning {
+    border-left-color: #E0C797; /* Soft, sandy yellow/ochre */
+}
+
+/* ==================================== */
+/* 4. FOOTER */
+/* ==================================== */
+
+.footer {
+    text-align: center;
+    padding: 40px;
+    margin-top: 60px;
+    border-top: 1px solid var(--border-color); /* Uses a soft border color */
+    color: var(--footer-text); /* Desaturated green-gray */
+    font-size: 0.88em;
+    line-height: 1.5;
+}
+/* Add this to your style.css, maybe in a new section for forms or buttons */
+
+.social-login-actions {
+    display: flex;
+    align-items: center; /* This is the key: it vertically centers the items */
+    gap: 15px;           /* This adds a nice space between the buttons */
+    margin-top: 1em;     /* Adds some space above the buttons */
+}
+
+/* Optional: It's better to control styles here than inline in HTML */
+.social-login-actions img {
+    height: 40px; /* Set a fixed height */
+    vertical-align: left; /* Helps with alignment in some browsers */
+}
+
+.social-login-actions .btn {
+    height: 40px;
+    padding: 0 15px;
+}

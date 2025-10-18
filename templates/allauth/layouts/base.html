@@ -1,7 +1,9 @@
 {% load i18n %}
+{% load i18n static %}
 <!DOCTYPE html>
 <html>
     <head>
+        <link rel="stylesheet" href="{% static 'blog_app/style.css' %}">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>
@@ -12,85 +14,97 @@
         {% endblock extra_head %}
     </head>
     <body>
+        <div class="main-wrapper">
         {% block body %}
             {% if messages %}
-                <div>
+                <div class='messages-container'>
                     <strong>{% trans "Messages:" %}</strong>
                     <ul>
                         {% for message in messages %}<li>{{ message }}</li>{% endfor %}
                     </ul>
                 </div>
             {% endif %}
-            <div>
-                <strong>{% trans "Menu:" %}</strong>
-                <ul>
-                    {% if user.is_authenticated %}
-                        {% url 'account_email' as email_url_ %}
-                        {% if email_url_ %}
-                            <li>
-                                <a href="{{ email_url_ }}">{% trans "Change Email" %}</a>
-                            </li>
-                        {% endif %}
-                        {% url 'account_change_password' as change_password_url_ %}
-                        {% if change_password_url_ %}
-                            <li>
-                                <a href="{{ change_password_url_ }}">{% trans "Change Password" %}</a>
-                            </li>
-                        {% endif %}
-                        {% url 'socialaccount_connections' as connections_url_ %}
-                        {% if connections_url_ %}
-                            <li>
-                                <a href="{{ connections_url_ }}">{% trans "Account Connections" %}</a>
-                            </li>
-                        {% endif %}
-                        {% url 'mfa_index' as mfa_url_ %}
-                        {% if mfa_url_ %}
-                            <li>
-                                <a href="{{ mfa_url_ }}">{% trans "Two-Factor Authentication" %}</a>
-                            </li>
-                        {% endif %}
-                        {% url 'usersessions_list' as usersessions_list_url_ %}
-                        {% if usersessions_list_url_ %}
-                            <li>
-                                <a href="{{ usersessions_list_url_ }}">{% trans "Sessions" %}</a>
-                            </li>
-                        {% endif %}
-                        {% url 'account_logout' as logout_url_ %}
-                        {% if logout_url_ %}
-                            <li>
-                                <a href="{{ logout_url_ }}">{% trans "Sign Out" %}</a>
-                            </li>
-                        {% endif %}
-                    <!-- manually added -->
-                    {% else %}
-                        {# Only show the 'Sign In' link if we are NOT on the login page #}
-                        {% if request.resolver_match.url_name != 'account_login' %}
-                            {% url 'account_login' as login_url_ %}
-                            {% if login_url_ %}
+            
+            <div class='nav-container'>
+                <div>
+                    <strong>{% trans "Menu:" %}</strong>
+                    <ul>
+                        {% if user.is_authenticated %}
+                            <a href="{% url 'account_logout' %}">Log out</a>
+                            {% url 'account_email' as email_url_ %}
+                            {% if email_url_ %}
                                 <li>
-                                    <a href="{{ login_url_ }}">{% trans "login" %}</a>
+                                    <a href="{{ email_url_ }}">{% trans "Change Email" %}</a>
                                 </li>
                             {% endif %}
-                        {% endif %}
-
-                        {# Only show the 'Sign Up' link if we are NOT on the signup page #}
-                        {% if request.resolver_match.url_name != 'account_signup' %}
-                            {% url 'account_signup' as signup_url_ %}
-                            {% if signup_url_ %}
+                            {% url 'account_change_password' as change_password_url_ %}
+                            {% if change_password_url_ %}
                                 <li>
-                                    <a href="{{ signup_url_ }}">{% trans "Sign Up" %}</a>
+                                    <a href="{{ change_password_url_ }}">{% trans "Change Password" %}</a>
                                 </li>
                             {% endif %}
-                        {% endif %}
-                    {% endif %}  
-                    {# This closing endif matches the {% if user.is_authenticated %} from before #}
-                    <!-- was written manually -->
+                            {% url 'socialaccount_connections' as connections_url_ %}
+                            {% if connections_url_ %}
+                                <li>
+                                    <a href="{{ connections_url_ }}">{% trans "Account Connections" %}</a>
+                                </li>
+                            {% endif %}
+                            {% url 'mfa_index' as mfa_url_ %}
+                            {% if mfa_url_ %}
+                                <li>
+                                    <a href="{{ mfa_url_ }}">{% trans "Two-Factor Authentication" %}</a>
+                                </li>
+                            {% endif %}
+                            {% url 'usersessions_list' as usersessions_list_url_ %}
+                            {% if usersessions_list_url_ %}
+                                <li>
+                                    <a href="{{ usersessions_list_url_ }}">{% trans "Sessions" %}</a>
+                                </li>
+                            {% endif %}
+                            {% url 'account_logout' as logout_url_ %}
+                            {% if logout_url_ %}
+                                <li>
+                                    <a href="{{ logout_url_ }}">{% trans "Sign Out" %}</a>
+                                </li>
+                            {% endif %}
+                        <!-- manually added -->
+                        {% else %}
+                            {# Only show the 'Sign In' link if we are NOT on the login page #}
+                            {% if request.resolver_match.url_name != 'account_login' %}
+                                {% url 'account_login' as login_url_ %}
+                                {% if login_url_ %}
+                                    <li>
+                                        <a href="{{ login_url_ }}">{% trans "login" %}</a>
+                                    </li>
+                                {% endif %}
+                            {% endif %}
 
-                </ul>
+                            {# Only show the 'Sign Up' link if we are NOT on the signup page #}
+                            {% if request.resolver_match.url_name != 'account_signup' %}
+                                {% url 'account_signup' as signup_url_ %}
+                                {% if signup_url_ %}
+                                    <li>
+                                        <a href="{{ signup_url_ }}">{% trans "Sign Up" %}</a>
+                                    </li>
+                                {% endif %}
+                            {% endif %}
+                        {% endif %}  
+                        {# This closing endif matches the {% if user.is_authenticated %} from before #}
+                        <!-- was written manually -->
+
+                    </ul>
+                </div>
             </div>
+        <div id='content-block'>
             {% block content %}
             {% endblock content %}
+        </div>
+    </div>
         {% endblock body %}
+
+        <div class="footer">
+            &copy; 2025 Blog. Powered by Django.
+        </div>
         {% block extra_body %}
         {% endblock extra_body %}
     </body>
