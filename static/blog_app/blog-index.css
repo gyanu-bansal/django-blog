@@ -1,0 +1,26 @@
+/* Custom styles to match the design */
+        html {
+            /* This will scale down the entire page */
+            font-size: 19px;
+        }
+        body {
+            font-family: 'Merriweather', serif;
+            background-color: #f5f2e9; /* Creamy background */
+        }
+        .header-bg {
+            background-color: #4a3f35; /* Dark brown from image */
+        }
+        .main-text-color {
+            color: #4a3f35;
+        }
+        .accent-color {
+            color: #a17d5c; /* Bronze color for links/buttons */
+            border-color: #a17d5c;
+        }
+        .accent-color-hover:hover {
+            color: #4a3f35;
+            border-color: #4a3f35;
+        }
+        .post-item {
+            border-color: #b0a993; /* Border color for post items */
+        }
